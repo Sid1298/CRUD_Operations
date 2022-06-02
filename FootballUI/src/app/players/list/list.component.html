@@ -1,0 +1,42 @@
+<div class="container">
+  <br />
+
+  <div class="row">
+    <div class="col">
+      <h3>Players</h3>
+    </div>
+    <div class="col text-right">
+      <a routerLink="/players/create/" routerLinkActive="activate" class="btn btn-success btn-sm">Create New</a>
+    </div>
+  </div>
+
+  <br />
+  <table class="table table-bordered table-sm">
+    <tr>
+      <th>Id</th>
+      <th>Shirt No</th>
+      <th>Name</th>
+      <th>Position</th>
+      <th>Appearances</th>
+      <th>Goals</th>
+      <th width="200px"></th>
+    </tr>
+    <tr *ngFor="let player of players">
+      <td>{{ player.id }}</td>
+      <td>{{ player.shirtNo }}</td>
+      <td>{{ player.name }}</td>
+      <td>{{ player.position?.name }}</td>
+      <td>{{ player.appearances }}</td>
+      <td>{{ player.goals }}</td>
+      <td class="text-center">
+        <a [routerLink]="['/players/', player.id, 'details']" routerLinkActive="activate" class="btn btn-info btn-sm"
+          style="margin-right: 5px;">View</a>
+        <a [routerLink]="['/players/', player.id, 'edit']" routerLinkActive="activate"
+          class="btn btn-primary btn-sm">Edit</a>
+        <button class="btn btn-danger btn-sm" type="button" (click)="deletePlayer(player.id)"
+          style="margin-left: 5px;">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
+<router-outlet></router-outlet>
